@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 abstract final class AppColors {
   static const black1 = Color(0xFF1a1a16);
   static const white1 = Color(0xFFFAFAFA);
+  static const elevatedButtonOrange1 = Color(0xFFd98f1e);
+  
 
   static final lightColorScheme = ColorScheme(
     brightness: Brightness.light,
     primary: AppColors.black1,
     secondary: Colors.white,
-    surface: Colors.white30,
+    surface: Colors.white,
     onPrimary: Colors.white70,
     onSecondary: AppColors.black1,
     onSurface: AppColors.black1,
