@@ -4,6 +4,7 @@ abstract final class AppColors {
   static const black1 = Color(0xFF1a1a16);
   static const white1 = Color(0xFFFAFAFA);
   static const elevatedButtonOrange1 = Color(0xFFd98f1e);
+  static const darkGrey1 = Color(0xFF303030);
   
 
   static final lightColorScheme = ColorScheme(
