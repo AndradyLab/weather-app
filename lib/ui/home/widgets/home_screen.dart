@@ -6,23 +6,28 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          SizedBox(width: 25,),
-          SizedBox(
-            width: 320,
-            height: 50,
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: "Digite o nome da cidade",
-                prefixIcon: Icon(Icons.search,),
-              ),
+        centerTitle: true,
+        title: SizedBox(
+          width: 320,
+          height: 50,
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: "Digite o nome da cidade",
+              prefixIcon: Icon(Icons.search),
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
             ),
-          )
+          ),
+        ),
+        actions: [
+          SizedBox(width: 20),
+          GestureDetector(child: Icon(Icons.light_mode)),
         ],
       ),
     );
