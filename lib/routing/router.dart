@@ -3,11 +3,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app/routing/routes.dart';
 import 'package:weather_app/ui/home/widgets/home_screen.dart';
 import 'package:weather_app/ui/splash/widgets/splash_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'router.g.dart';
 
 @Riverpod(keepAlive: true)
-GoRouter router(RouterRef ref) {
+GoRouter router(Ref ref) {
 
   return GoRouter(
     initialLocation: Routes.splash,
