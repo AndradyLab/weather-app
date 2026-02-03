@@ -16,7 +16,8 @@ abstract final class AppColors {
     onSecondary: AppColors.black1,
     onSurface: AppColors.black1,
     error: Colors.red,
-    onError: Colors.white30
+    onError: Colors.white30,
+    outline: AppColors.black1
   );
   
   static final darkColorScheme = ColorScheme(
@@ -28,7 +29,8 @@ abstract final class AppColors {
     onSecondary: AppColors.white1,
     onSurface: AppColors.white1,
     error: Colors.red,
-    onError: Colors.white30
+    onError: Colors.white30,
+    outline: AppColors.white1
   );
   
   

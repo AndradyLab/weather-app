@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/config/dependencies.dart';
 import 'package:weather_app/ui/core/themes/colors.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final theme = ref.watch(themeNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -20,14 +23,25 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: InputDecoration(
               labelText: "Digite o nome da cidade",
               prefixIcon: Icon(Icons.search),
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.outline)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(color: Theme.of(context).colorScheme.outline)
+              ),
             ),
           ),
         ),
         actions: [
           SizedBox(width: 20),
-          GestureDetector(child: Icon(Icons.light_mode)),
+          IconButton(
+            icon: Icon(theme == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () {
+              ref.read(themeNotifierProvider.notifier).toggleTheme();
+            },
+          ),
         ],
       ),
     );
