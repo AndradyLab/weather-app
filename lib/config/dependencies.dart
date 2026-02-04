@@ -29,7 +29,21 @@ Dio dio(Ref ref) {
   );
   final dio = Dio(options);
   
-  
+  dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        // Log para conferir se está batendo no lugar certo
+        print('🚀 [DIO] Request: ${options.method} ${options.path}');
+        return handler.next(options);
+      },
+      onError: (DioException e, handler) {
+        print('❌ [DIO] Erro: ${e.response?.statusCode} - ${e.message}');
+        return handler.next(e);
+      },
+      onResponse: (response, handler) {
+        print('✅ [DIO] Sucesso: ${response.statusCode}');
+        return handler.next(response);
+      },
+    ));
   
   return dio;
 }
