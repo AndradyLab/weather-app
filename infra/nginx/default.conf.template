@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    server_name localhost;
+    resolver 8.8.8.8; # transforma o API_URL em ip
+    
+    location /v1/forecast {
+        proxy_method GET;
+        proxy_ssl_server_name on;
+        proxy_pass ${API_URL}/forecast.json?key=${API_KEY}&$args;
+    }
+    location /v1/history {
+        proxy_method GET;
+        proxy_ssl_server_name on;
+        proxy_pass ${API_URL}/history.json?key=${API_KEY}&$args;
+    }
+}

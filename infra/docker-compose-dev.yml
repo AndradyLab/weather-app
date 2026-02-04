@@ -1,0 +1,14 @@
+services:
+  weather-bff:
+    build: .
+    container_name: weather_proxy
+    ports:
+      - "8080:80"
+    env_file:
+      - ../.env.dev
+    networks:
+      - weather-net
+
+networks:
+  weather-net:
+    driver: bridge
