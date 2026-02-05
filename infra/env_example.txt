@@ -1,0 +1,3 @@
+API_URL= Endereço real da API.
+API_KEY=
+NGIX_SERVER_NAME= Endereço do NGIX

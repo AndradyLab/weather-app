@@ -1,2 +1,2 @@
-API_URL=
+API_URL= Endereço do NGIX
 API_KEY=

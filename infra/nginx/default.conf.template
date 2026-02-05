@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name localhost;
+    server_name ${NGIX_SERVER_NAME};
     resolver 8.8.8.8; # transforma o API_URL em ip
     
     location /v1/forecast {
