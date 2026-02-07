@@ -7,7 +7,7 @@ A new Flutter project.
 Para rodar a aplicação, execute o seguinte comando no terminal:
 
 ```
-flutter pub run build_runner watch
+fvm dart run build_runner watch --delete-conflicting-outputs
 cd infra
 docker-compose up --build
 flutter run
