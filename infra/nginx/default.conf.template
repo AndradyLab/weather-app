@@ -6,7 +6,7 @@ server {
     location /v1/forecast {
         proxy_method GET;
         proxy_ssl_server_name on;
-        proxy_pass ${API_URL}/forecast.json?key=${API_KEY}&$args;
+        proxy_pass ${API_URL}/forecast.json?key=${API_KEY}&$args&days=7;
     }
     location /v1/history {
         proxy_method GET;
