@@ -24,11 +24,6 @@ class ThemeNotifier extends _$ThemeNotifier {
 @Envied(path: '.env.dev', obfuscate: true)
 abstract class Env {
   @EnviedField(
-    varName: 'API_KEY',
-    obfuscate: true,
-  )
-  static final String apiKey = _Env.apiKey;
-  @EnviedField(
     varName: 'API_URL',
     obfuscate: true,
   )
@@ -38,7 +33,7 @@ abstract class Env {
 @Riverpod(keepAlive: true)
 Dio dio(Ref ref) {
   final logger = ref.watch(loggerProvider);
-
+  logger.i("aifajfiojasf: ${Env.apiUrl}");
   final options = BaseOptions(
     baseUrl: Env.apiUrl,
     connectTimeout: const Duration(seconds: 15),
@@ -69,7 +64,7 @@ Dio dio(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-Logger logger() {
+Logger logger(Ref ref) {
   return Logger(
       printer: PrettyPrinter(
         methodCount: 0,
@@ -77,10 +72,6 @@ Logger logger() {
         lineLength: 120,
         colors: true,
         printEmojis: true,
-        printTime: true,
-        dateTimeFormat: (DateTime time) {
-          return DateFormat('yyyy-MM-dd HH:mm:ss').format(time);
-        },
       ),
       level: kDebugMode ? Level.debug : Level.error);
 }

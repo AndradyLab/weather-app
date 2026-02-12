@@ -12,9 +12,11 @@ abstract final class AppColors {
     primary: AppColors.black1,
     secondary: Colors.white,
     surface: Colors.white,
+    inverseSurface: AppColors.black1,
     onPrimary: Colors.white70,
     onSecondary: AppColors.black1,
     onSurface: AppColors.black1,
+    onInverseSurface: AppColors.white1,
     error: Colors.red,
     onError: Colors.white30,
     outline: AppColors.black1
@@ -25,12 +27,14 @@ abstract final class AppColors {
     primary: AppColors.white1,
     secondary: Colors.grey,
     surface: Colors.black38,
+    inverseSurface: AppColors.white1,
     onPrimary: Colors.black38,
     onSecondary: AppColors.white1,
     onSurface: AppColors.white1,
+    onInverseSurface: Colors.black87,
     error: Colors.red,
     onError: Colors.white30,
-    outline: AppColors.white1
+    outline: AppColors.white1,
   );
   
   
