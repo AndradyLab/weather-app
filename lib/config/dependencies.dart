@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:envied/envied.dart';
@@ -33,7 +32,6 @@ abstract class Env {
 @Riverpod(keepAlive: true)
 Dio dio(Ref ref) {
   final logger = ref.watch(loggerProvider);
-  logger.i("aifajfiojasf: ${Env.apiUrl}");
   final options = BaseOptions(
     baseUrl: Env.apiUrl,
     connectTimeout: const Duration(seconds: 15),

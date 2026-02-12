@@ -21,8 +21,11 @@ class ForecastRepositoryLocal implements ForecastRepository {
   @override
   Future<Result<CurrentWeatherApiModel>> getForecast(String city) async {
     try {
-      return await _weatherService.fetchForecast(city);
-
+      final result = await _weatherService.fetchForecast(city);
+      return result.when(
+        ok: (data) => Result.ok(data),
+        error: (error) => Result.error(error),
+      );
     } catch (e) {
       return Result.error(Exception(e));
     }

@@ -40,7 +40,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     )
                   )
                 }, 
-                data: (data) => Text(data.toString())
+                data: (data) => debugPrint(data.toString())
               )
             },
             decoration: InputDecoration(

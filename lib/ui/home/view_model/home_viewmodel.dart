@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app/data/repositories/forecast/forecast_repository_remote.dart';
 import 'package:weather_app/data/services/api/model/current_weather/current_weather_api_model.dart';
@@ -7,10 +8,9 @@ part 'home_viewmodel.g.dart';
 
 @riverpod
 class HomeViewModel extends _$HomeViewModel {
-  
   @override
   FutureOr<CurrentWeatherApiModel?> build() {
-    return null; 
+    return null;
   }
 
   Future<void> getForecast(String city) async {

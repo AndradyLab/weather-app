@@ -23,23 +23,15 @@ class WeatherAPIClient {
   Future<Result<CurrentWeatherApiModel>> fetchForecast(String location) async {
     try {
       final result = await _dio.get(WeatherEndpoints.forecast, queryParameters: {'q': location});
-      if (result.statusCode != 200) {
-        return Result.error(Exception('Failed to fetch forecast'));
-      }
-
       return Result.ok(CurrentWeatherApiModel.fromJson(result.data));
     } on Exception catch (err) {
-      return Result.error(Exception('Unexpected error: ${err.toString()}'));
+      throw Result.error(Exception('Unexpected error: ${err.toString()}'));
     }
   }
 
   Future<Result<HistoryApiModel>> fetchHistory(String location, String formattedDate) async {
     try {
       final result = await _dio.get(WeatherEndpoints.history, queryParameters: {'q': location, 'dt': formattedDate});
-      if (result.statusCode != 200) {
-        return Result.error(Exception('Failed to fetch history'));
-      }
-
       return Result.ok(HistoryApiModel.fromJson(result.data));
     } on Exception catch (err) {
       return Result.error(Exception('Unexpected error: ${err.toString()}'));
