@@ -14,7 +14,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final theme = ref.watch(themeNotifierProvider);
     final homeViewModel = ref.watch(homeViewModelProvider);
-    
+
+    ref.listen(homeViewModelProvider, (previous, next) {
+      if (next is AsyncError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.error.toString())),
+        );
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,51 +30,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           width: 320,
           height: 50,
           child: TextField(
-            onSubmitted: (value) => {
-              if(value.trim().isEmpty) {
+            onSubmitted: (value) {
+              if (value.trim().isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("Digite o nome de uma cidade válida!"),
-                  )
-                )
-              },
-              ref.read(homeViewModelProvider.notifier).getForecast(value),
-              homeViewModel.when(
-                loading: () => CircularProgressIndicator(),
-                error: (error, stackTrace) =>{
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(error.toString()),
-                    )
-                  )
-                }, 
-                data: (data) => debugPrint(data.toString())
-              )
+                  const SnackBar(content: Text("Digite o nome de uma cidade válida!")),
+                );
+                return;
+              }
+              ref.read(homeViewModelProvider.notifier).getForecast(value);
             },
             decoration: InputDecoration(
               labelText: "Digite o nome da cidade",
               prefixIcon: Icon(Icons.search),
               enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.outline)),
+                  borderRadius: BorderRadius.circular(15), borderSide: BorderSide(color: Theme.of(context).colorScheme.outline)),
               focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.outline)),
+                  borderRadius: BorderRadius.circular(15), borderSide: BorderSide(color: Theme.of(context).colorScheme.outline)),
             ),
           ),
         ),
         actions: [
           SizedBox(width: 20),
           IconButton(
-            icon: Icon(
-                theme == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode),
+            icon: Icon(theme == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode),
             onPressed: () {
               ref.read(themeNotifierProvider.notifier).toggleTheme();
             },
           ),
         ],
+      ),
+      body: Container(
+        child: homeViewModel.when(
+          data: (data) {
+            return null;
+          },
+          error: (error, stackTrace) {
+            return null;
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+        ),
       ),
     );
   }

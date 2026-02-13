@@ -45,6 +45,7 @@ Dio dio(Ref ref) {
     //TODO: CRIAR OS INTERCEPTORES NA PASTA UTILS, os principais são o de error o de response pode ser pensado mas de forma geral quem faz é o repositorie.
     onRequest: (options, handler) {
       // Log para conferir se está batendo no lugar certo
+      logger.i("Teste: ${options.baseUrl}");
       logger.d('🚀 [DIO] Request: ${options.method} ${options.path}');
       return handler.next(options);
     },

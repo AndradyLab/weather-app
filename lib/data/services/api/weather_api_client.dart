@@ -25,7 +25,7 @@ class WeatherAPIClient {
       final result = await _dio.get(WeatherEndpoints.forecast, queryParameters: {'q': location});
       return Result.ok(CurrentWeatherApiModel.fromJson(result.data));
     } on Exception catch (err) {
-      throw Result.error(Exception('Unexpected error: ${err.toString()}'));
+      return Result.error(Exception('Unexpected error: ${err.toString()}'));
     }
   }
 

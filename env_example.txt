@@ -1,1 +1,1 @@
-API_URL= Endereço do NGIX
+API_URL= Endereço do NGIX -> Para testes locais utilize 10.0.2.2 para emulador e localhost para desktop.
